@@ -13,7 +13,7 @@ public class Job_1 implements Job {
 	private static Logger _log = LoggerFactory.getLogger(Job_1.class);
 
 	public void execute(JobExecutionContext arg0) throws JobExecutionException {
-		_log.info("Hello World! - " + new Date());
+		_log.info("Hello World! - " + new Date());//123
 	}
 
 }
