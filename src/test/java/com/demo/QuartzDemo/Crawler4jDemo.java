@@ -26,12 +26,7 @@ public class Crawler4jDemo extends WebCrawler {
 	private CsvWriter cw;
 
 	public Crawler4jDemo() throws IOException {
-		csv = new File("E:/豆瓣电影.csv");
-		cw = new CsvWriter(new FileOutputStream(csv, true), ',', Charset.forName("GBK"));
-		cw.write("片名");
-		cw.write("评分");
-		cw.endRecord();
-		cw.close();
+		csv = Controller.getFile();
 	}
 
 	@Override
@@ -57,6 +52,7 @@ public class Crawler4jDemo extends WebCrawler {
 		Elements card = doc.select("div[class=card]");
 		String title = card.select("h1").first().text();
 		String score = card.select("section[class=subject-info]").first().select("div[class=left]").first().select("strong").text();
+		String count = card.select("section[class=subject-info]").first().select("div[class=left]").first().select("p[class=rating]>span").get(1).text();
 
 		try {
 			cw = new CsvWriter(new FileOutputStream(csv, true), ',', Charset.forName("GBK"));

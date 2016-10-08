@@ -1,5 +1,13 @@
 package com.demo.QuartzDemo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.Charset;
+
+import com.csvreader.CsvWriter;
+
 import edu.uci.ics.crawler4j.crawler.CrawlConfig;
 import edu.uci.ics.crawler4j.crawler.CrawlController;
 import edu.uci.ics.crawler4j.fetcher.PageFetcher;
@@ -10,13 +18,27 @@ public class Controller {
 
 	public static int count = 0;
 
+	public static File csv;
+
 	public synchronized static int getCont() {
 		return ++count;
+	}
+	
+	public synchronized static File getFile() throws IOException{
+		if(csv == null){
+			csv = new File("E:/豆瓣电影.csv");
+			CsvWriter cw = new CsvWriter(new FileOutputStream(csv, true), ',', Charset.forName("GBK"));
+			cw.write("片名");
+			cw.write("评分");
+			cw.endRecord();
+			cw.close();
+		}
+		return csv;
 	}
 
 	public static void main(String[] args) throws Exception {
 		String crawlStorageFolder = "E:/B";
-		int numberOfCrawlers = 1;
+		int numberOfCrawlers = 3;
 
 		CrawlConfig config = new CrawlConfig();
 		config.setCrawlStorageFolder(crawlStorageFolder);
