@@ -7,12 +7,20 @@ import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
 public class Controller {
+
+	public static int count = 0;
+
+	public synchronized static int getCont() {
+		return ++count;
+	}
+
 	public static void main(String[] args) throws Exception {
-		String crawlStorageFolder = "F:/root";
-		int numberOfCrawlers = 7;
+		String crawlStorageFolder = "E:/B";
+		int numberOfCrawlers = 1;
 
 		CrawlConfig config = new CrawlConfig();
 		config.setCrawlStorageFolder(crawlStorageFolder);
+		config.setMaxDepthOfCrawling(6);
 
 		/*
 		 * Instantiate the controller for this crawl.
@@ -27,14 +35,12 @@ public class Controller {
 		 * URLs that are fetched and then the crawler starts following links
 		 * which are found in these pages
 		 */
-		controller.addSeed("http://www.ics.uci.edu/~lopes/");
-		controller.addSeed("http://www.ics.uci.edu/~welling/");
-		controller.addSeed("http://www.ics.uci.edu/");
+		controller.addSeed("https://m.douban.com/movie/subject/1292052/?from=rec");
 
 		/*
 		 * Start the crawl. This is a blocking operation, meaning that your code
 		 * will reach the line after this only when crawling is finished.
 		 */
-		controller.start(MyCrawler.class, numberOfCrawlers);
+		controller.start(Crawler4jDemo.class, numberOfCrawlers);
 	}
 }
