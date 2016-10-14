@@ -14,7 +14,7 @@ import edu.uci.ics.crawler4j.fetcher.PageFetcher;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtConfig;
 import edu.uci.ics.crawler4j.robotstxt.RobotstxtServer;
 
-public class Controller {
+public class ControllerMain {
 
 	public static int count = 0;
 
@@ -63,6 +63,6 @@ public class Controller {
 		 * Start the crawl. This is a blocking operation, meaning that your code
 		 * will reach the line after this only when crawling is finished.
 		 */
-		controller.start(Crawler4jDemo.class, numberOfCrawlers);
+		controller.start(Crawler4Douban.class, numberOfCrawlers);
 	}
 }

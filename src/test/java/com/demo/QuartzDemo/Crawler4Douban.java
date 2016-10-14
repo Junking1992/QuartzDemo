@@ -17,7 +17,7 @@ import edu.uci.ics.crawler4j.crawler.WebCrawler;
 import edu.uci.ics.crawler4j.parser.HtmlParseData;
 import edu.uci.ics.crawler4j.url.WebURL;
 
-public class Crawler4jDemo extends WebCrawler {
+public class Crawler4Douban extends WebCrawler {
 
 	private String MovieSubject = "https://m.douban.com/movie/subject";
 	private String endStr = "?from=rec";
@@ -25,8 +25,8 @@ public class Crawler4jDemo extends WebCrawler {
 	private final File csv;
 	private CsvWriter cw;
 
-	public Crawler4jDemo() throws IOException {
-		csv = Controller.getFile();
+	public Crawler4Douban() throws IOException {
+		csv = ControllerMain.getFile();
 	}
 
 	@Override
@@ -44,7 +44,7 @@ public class Crawler4jDemo extends WebCrawler {
 		Thread thread = Thread.currentThread();
 		long id = thread.getId();
 		String name = thread.getName();
-		System.out.println(Controller.getCont() + "-->" + id + "-->" + name + "-->" + url);
+		System.out.println(ControllerMain.getCont() + "-->" + id + "-->" + name + "-->" + url);
 
 		HtmlParseData htmlParseData = (HtmlParseData) page.getParseData();
 		String html = htmlParseData.getHtml();
