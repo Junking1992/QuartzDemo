@@ -2,4 +2,5 @@ eclipse.preferences.version=1
 encoding//src/main/java=UTF-8
 encoding//src/test/java=UTF-8
 encoding//src/test/java/com/demo/QuartzDemo/Crawler4Douban.java=UTF-8
+encoding//src/test/java/com/demo/QuartzDemo/Crawler4MO.java=UTF-8
 encoding/<project>=UTF-8

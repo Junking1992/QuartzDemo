@@ -19,6 +19,16 @@ public class ControllerMain {
 	public static int count = 0;
 
 	public static File csv;
+	
+	public final static String TITLE = "标题";
+	public final static String CODE = "识别码";
+	public final static String DATE = "发行时间";
+	public final static String LENGTH = "长度";
+	public final static String DIRECTOR = "导演";
+	public final static String MAKER = "制作商";
+	public final static String PUBLISHER = "发行商";
+	public final static String SERIAL = "系列";
+	public final static String TYPE = "类别";
 
 	public synchronized static int getCont() {
 		return ++count;
@@ -26,10 +36,17 @@ public class ControllerMain {
 	
 	public synchronized static File getFile() throws IOException{
 		if(csv == null){
-			csv = new File("E:/豆瓣电影.csv");
+			csv = new File("E:/mo.csv");
 			CsvWriter cw = new CsvWriter(new FileOutputStream(csv, true), ',', Charset.forName("GBK"));
-			cw.write("片名");
-			cw.write("评分");
+			cw.write("TITLE");
+			cw.write("CODE");
+			cw.write("DATE");
+			cw.write("LENGTH");
+			cw.write("DIRECTOR");
+			cw.write("MAKER");
+			cw.write("PUBLISHER");
+			cw.write("SERIAL");
+			cw.write("TYPE");
 			cw.endRecord();
 			cw.close();
 		}
@@ -38,11 +55,11 @@ public class ControllerMain {
 
 	public static void main(String[] args) throws Exception {
 		String crawlStorageFolder = "E:/B";
-		int numberOfCrawlers = 3;
+		int numberOfCrawlers = 5;
 
 		CrawlConfig config = new CrawlConfig();
 		config.setCrawlStorageFolder(crawlStorageFolder);
-		config.setMaxDepthOfCrawling(6);
+		config.setMaxDepthOfCrawling(-1);
 
 		/*
 		 * Instantiate the controller for this crawl.
@@ -57,12 +74,12 @@ public class ControllerMain {
 		 * URLs that are fetched and then the crawler starts following links
 		 * which are found in these pages
 		 */
-		controller.addSeed("https://m.douban.com/movie/subject/1292052/?from=rec");
+		controller.addSeed("https://avmo.pw/cn/page/1");
 
 		/*
 		 * Start the crawl. This is a blocking operation, meaning that your code
 		 * will reach the line after this only when crawling is finished.
 		 */
-		controller.start(Crawler4Douban.class, numberOfCrawlers);
+		controller.start(Crawler4MO.class, numberOfCrawlers);
 	}
 }
